@@ -15,6 +15,19 @@ Fb-messenger chatbot that serves as a dictionary for spanish language.
 
 { add content }
 
+## Endpoints
+
+### Word Definitions
+
+Get requests to url-pattern **/define** with "word" parameter.
+
+```bash
+curl https://chatbot-rae.appspot.com/define?word=instancia
+```
+### Word Frequency
+
+Get requests to url-pattern **/**
+
 ## Setup
 
 Run a local simulation of the project by following these steps. 
