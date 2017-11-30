@@ -5,13 +5,22 @@
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
     <servlet>
-        <servlet-name>demo</servlet-name>
-        <servlet-class>com.iteso.app.App</servlet-class>
+        <servlet-name>defs</servlet-name>
+        <servlet-class>com.iteso.app.controller.DefinitionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>freq</servlet-name>
+        <servlet-class>com.iteso.app.controller.FrequencyController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>demo</servlet-name>
-        <url-pattern>/demo</url-pattern>
+        <servlet-name>defs</servlet-name>
+        <url-pattern>/define</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>freq</servlet-name>
+        <url-pattern>/freq</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

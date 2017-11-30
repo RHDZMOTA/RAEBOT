@@ -20,7 +20,8 @@ public class WordCounter {
     public static void add(String word){
         if (WordCounter.has(word)){
             int prevFreq = WordCounter.getInstance().getCore().get(word.toLowerCase());
-            WordCounter.getInstance().getCore().put(word.toLowerCase(), prevFreq+1);
+            int updatedFreq = prevFreq+1;
+            WordCounter.getInstance().getCore().put(word.toLowerCase(), updatedFreq);
         } else {
             WordCounter.getInstance().getCore().put(word.toLowerCase(), 1);
         }

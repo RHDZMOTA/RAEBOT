@@ -37,7 +37,11 @@ handlers:
   script: unused
   login: optional
   secure: optional
-- url: /demo
+- url: /freq
+  script: unused
+  login: optional
+  secure: optional
+- url: /define
   script: unused
   login: optional
   secure: optional
