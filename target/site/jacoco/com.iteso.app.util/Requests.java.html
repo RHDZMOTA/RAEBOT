@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Requests.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">RAEBOT</a> &gt; <a href="index.source.html" class="el_package">com.iteso.app.util</a> &gt; <span class="el_source">Requests.java</span></div><h1>Requests.java</h1><pre class="source lang-java linenums">package com.iteso.app.util;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import com.iteso.app.util.JsonSerializer;
+
+@SuppressWarnings(&quot;all&quot;)
+<span class="nc" id="L13">public class Requests {</span>
+
+<span class="nc" id="L15">    public static int timeoutMs = 45000;</span>
+
+
+    private static class Request {
+        private String url;
+        private JsonSerializer response;
+
+<span class="nc" id="L22">        public Request(String url){</span>
+<span class="nc" id="L23">            setUrl(url);</span>
+<span class="nc" id="L24">        }</span>
+
+        public void setUrl(String url){
+<span class="nc" id="L27">            this.url = url;</span>
+<span class="nc" id="L28">        }</span>
+
+        public String getUrl() {
+<span class="nc" id="L31">            return this.url;</span>
+        }
+
+        public void setResponse(JsonSerializer resp){
+<span class="nc" id="L35">            this.response = resp;</span>
+<span class="nc" id="L36">        }</span>
+
+        public JsonSerializer getResponse(){
+<span class="nc" id="L39">            return response;</span>
+        }
+
+        public void performGet(int timeoutMs) throws IOException {
+<span class="nc" id="L43">            URL url = new URL(getUrl());</span>
+<span class="nc" id="L44">            URLConnection conn = url.openConnection();</span>
+<span class="nc" id="L45">            conn.setConnectTimeout(timeoutMs);</span>
+<span class="nc" id="L46">            conn.setReadTimeout(timeoutMs);</span>
+<span class="nc" id="L47">            InputStream stream = conn.getInputStream();</span>
+<span class="nc" id="L48">            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));</span>
+<span class="nc" id="L49">            StringBuffer json = new StringBuffer();</span>
+            String line;
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L52">                json.append(line);</span>
+            }
+<span class="nc" id="L54">            reader.close();</span>
+<span class="nc" id="L55">            setResponse(new JsonSerializer(json.toString()));</span>
+<span class="nc" id="L56">        }</span>
+    }
+
+    public static JsonSerializer getJson(String url){
+<span class="nc" id="L60">        Request r = new Request(url);</span>
+
+        JsonSerializer jsonResp;
+        try {
+<span class="nc" id="L64">            r.performGet(Requests.timeoutMs);</span>
+<span class="nc" id="L65">            jsonResp = r.getResponse();</span>
+<span class="nc" id="L66">        } catch (IOException e) {</span>
+<span class="nc" id="L67">            jsonResp = new JsonSerializer(&quot;{\&quot;error\&quot;: &quot; + &quot;\&quot;&quot; + e.getMessage() + &quot;\&quot;&quot;);</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        return jsonResp;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

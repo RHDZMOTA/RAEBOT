@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dictionary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">RAEBOT</a> &gt; <a href="index.source.html" class="el_package">com.iteso.app.util</a> &gt; <span class="el_source">Dictionary.java</span></div><h1>Dictionary.java</h1><pre class="source lang-java linenums">package com.iteso.app.util;
+
+import java.util.HashMap;
+
+import com.iteso.app.util.Word;
+
+@SuppressWarnings(&quot;all&quot;)
+public class Dictionary {
+<span class="nc" id="L9">    private static Dictionary instance = null;</span>
+<span class="nc" id="L10">    protected HashMap&lt;String, Word&gt; core = new HashMap&lt;String, Word&gt;();</span>
+    public HashMap&lt;String, Word&gt; getCore(){
+<span class="nc" id="L12">        return this.core;</span>
+    }
+<span class="nc" id="L14">    protected Dictionary(){}</span>
+    public static Dictionary getInstance() {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (instance == null) {</span>
+<span class="nc" id="L17">            instance = new Dictionary();</span>
+        }
+<span class="nc" id="L19">        return instance;</span>
+    }
+
+    public static void add(String word, Word obj){
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (!Dictionary.has(word)){</span>
+<span class="nc" id="L24">            Dictionary.getInstance().getCore().put(word.toLowerCase(), obj);</span>
+        }
+<span class="nc" id="L26">    }</span>
+
+    public static void add(Word obj){
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (!Dictionary.has(obj.getValue())){</span>
+<span class="nc" id="L30">            Dictionary.getInstance().getCore().put(obj.getValue().toLowerCase(), obj);</span>
+        }
+
+<span class="nc" id="L33">    }</span>
+
+    public static void add(String word){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (!Dictionary.has(word)){</span>
+<span class="nc" id="L37">            Word wordObj = new Word(word);</span>
+<span class="nc" id="L38">            Dictionary.getInstance().getCore().put(word.toLowerCase(), wordObj);</span>
+        }
+
+<span class="nc" id="L41">    }</span>
+
+    public static boolean has(String word){
+<span class="nc bnc" id="L44" title="All 4 branches missed.">        return Dictionary.getInstance().getCore().containsKey(word.toLowerCase()) &amp;&amp; !Dictionary.hasError(word);</span>
+    }
+
+    public static boolean hasError(String word) {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (Dictionary.getInstance().getCore().containsKey(word.toLowerCase())){</span>
+<span class="nc" id="L49">            boolean contains = Dictionary.getDefinition(word).matches(&quot;.*\\bUnexpected error\\b.*&quot;);</span>
+<span class="nc" id="L50">            return contains;</span>
+        }
+<span class="nc" id="L52">        return false;</span>
+    }
+
+
+    public static Word get(String word){
+<span class="nc" id="L57">        return Dictionary.getInstance().getCore().get(word);</span>
+    }
+
+    public static String getDefinition(String word){
+<span class="nc" id="L61">        return Dictionary.get(word).getDefinition();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L66">        return Dictionary.getInstance().getCore().toString();</span>
+    }
+
+    public static void main(String[] args){
+<span class="nc" id="L70">        Word w1 = new Word(&quot;hola&quot;);</span>
+<span class="nc" id="L71">        Word w2 = new Word(&quot;instancia&quot;);</span>
+<span class="nc" id="L72">        Dictionary.add(w1);</span>
+<span class="nc" id="L73">        Dictionary.add(w2);</span>
+<span class="nc" id="L74">        Dictionary.add(&quot;hola&quot;);</span>
+<span class="nc" id="L75">        Dictionary.add(&quot;recurso&quot;);</span>
+
+
+<span class="nc" id="L78">        System.out.println(Dictionary.getInstance());</span>
+<span class="nc" id="L79">        System.out.println(Dictionary.has(&quot;recurso&quot;));</span>
+<span class="nc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
