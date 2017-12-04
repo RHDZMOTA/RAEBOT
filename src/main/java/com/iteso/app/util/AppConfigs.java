@@ -7,10 +7,24 @@ import com.typesafe.config.ConfigFactory;
 
 public class AppConfigs {
     private static AppConfigs instance = null;
-    private Config conf = ConfigFactory.load();
-    public Config app = conf.getConfig("app");
-    public Config twilioConf = app.getConfig("twilio");
     protected AppConfigs(){}
+
+    private Config conf = ConfigFactory.load();
+
+    /**
+     * General configuration for the app.
+     */
+    public Config app = conf.getConfig("app");
+
+    /**
+     * Twilio configuration values (use getString).
+     */
+    public Config twilioConf = app.getConfig("twilio");
+
+    /**
+     * Method to get or create the unique instance of AppConfigs.
+     * @return An unique instance of AppConfigs.
+     */
     public static AppConfigs getInstance() {
         if (instance == null) {
             instance = new AppConfigs();

@@ -37,17 +37,31 @@ public enum AnswerTypes {
     private String answer;
     private String[] possibleAnswers;
 
-    private AnswerTypes(String[] answers){
+    /**
+     * Constructor that allows to save a list of String values for each AnswerType.
+     *
+     * @param answers
+     */
+    private AnswerTypes(String[] answers) {
         setPossibleAnswers(answers);
     }
 
-    private void setPossibleAnswers(String[] answers){ this.possibleAnswers = answers; }
+    private void setPossibleAnswers(String[] answers) {
+        this.possibleAnswers = answers;
+    }
 
-    private void setAnswer(){
+    /**
+     * Method that selects a random value from possibleAnswers.
+     */
+    private void setAnswer() {
         Random random = new Random();
         answer = possibleAnswers[random.nextInt(possibleAnswers.length)];
     }
 
+    /**
+     * A String representation of a possible answer.
+     * @return A String representing a random answer.
+     */
     public String toString(){
         setAnswer();
         return answer;}

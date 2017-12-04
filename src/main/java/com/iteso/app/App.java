@@ -1,26 +1,53 @@
 package com.iteso.app;
 
+
+import com.iteso.app.model.AnswerTypes;
+import com.iteso.app.model.TextResponse;
+import com.iteso.app.model.Word;
 import com.iteso.app.util.Dictionary;
 import com.iteso.app.util.WordCounter;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-
 @SuppressWarnings("all")
-public class App extends HttpServlet {
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        String stringWord = req.getParameter("word");
-        Dictionary.add(stringWord);
-        WordCounter.add(stringWord);
+public class App {
 
-        String definition = Dictionary.getDefinition(stringWord);
+    /**
+     * Perform tests on relevant elements.
+     */
+    public static void main(String[] args){
 
-        resp.setContentType("application/json");
-        resp.getWriter().println(definition);
+        // TEST WORD
+        System.out.println("\n--------- TEST : Word");
+        Word word = new Word("hola");
+        System.out.println(word.getDefinition());
+
+        // TEST WORDCOUNTER
+        System.out.println("\n--------- TEST : WordCounter");
+        WordCounter.add("hola");
+        WordCounter.add("hola");
+        WordCounter.add("hey");
+        System.out.println(WordCounter.getInstance());
+
+        // TEST DICITONARY
+        System.out.println("\n--------- TEST : Dictionary");
+        Word w1 = new Word("hola");
+        Word w2 = new Word("instancia");
+        Dictionary.add(w1);
+        Dictionary.add(w2);
+        Dictionary.add("hola");
+        Dictionary.add("recurso");
+        System.out.println(Dictionary.getInstance());
+        System.out.println(Dictionary.has("recurso"));
+
+        // TEST ANSWER TPYES
+        System.out.println("\n--------- TEST : AnswerTypes");
+        System.out.println(AnswerTypes.GREETING);
+        System.out.println(AnswerTypes.GREETING);
+        System.out.println(AnswerTypes.GREETING);
+
+
+        // TEST TEXTRESPONSE
+        System.out.println("\n--------- TEST : WordCounter");
+        TextResponse textResponse = new TextResponse("Esto es programación en JAVA.", "523318506323");
+        System.out.println(textResponse.getAnsewer());
     }
 }

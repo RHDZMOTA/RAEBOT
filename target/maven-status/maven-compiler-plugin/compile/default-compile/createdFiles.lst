@@ -1,3 +1,7 @@
+com/iteso/app/service/FrecuencyService.class
 com/iteso/app/controller/SmsResponseController.class
+com/iteso/app/service/DefinitionService.class
+com/iteso/app/service/SmsResponseService.class
+com/iteso/app/service/GenericService.class
 com/iteso/app/controller/FrequencyController.class
 com/iteso/app/controller/DefinitionController.class

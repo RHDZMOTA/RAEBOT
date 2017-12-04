@@ -10,6 +10,11 @@ public class WordCounter {
         return this.core;
     }
     public WordCounter(){};
+
+    /**
+     * Method that creates or retreives an instance of the counter.
+     * @return Unique instance of WordCounter Object.
+     */
     public static WordCounter getInstance() {
         if (instance == null) {
             instance = new WordCounter();
@@ -17,6 +22,10 @@ public class WordCounter {
         return instance;
     }
 
+    /**
+     * Method to add/registed a word in the counter given a string value.
+     * @param word String value that represents a word.
+     */
     public static void add(String word){
         if (WordCounter.has(word)){
             int prevFreq = WordCounter.getInstance().getCore().get(word.toLowerCase());
@@ -27,19 +36,21 @@ public class WordCounter {
         }
     }
 
+    /**
+     * Method that indicates if the counter has a register of a given string value.
+     * @param word String value representing a word.
+     * @return True is word is in WordCounter and false otherwise.
+     */
     public static boolean has(String word){
         return WordCounter.getInstance().getCore().containsKey(word.toLowerCase());
     }
 
+    /**
+     * Method that creates a string representation of WordCounter.
+     * @return String value representing the WordCounter.
+     */
     @Override
     public String toString() {
         return WordCounter.getInstance().getCore().toString();
-    }
-
-    public static void main(String[] args){
-        WordCounter.add("hola");
-        WordCounter.add("hola");
-        WordCounter.add("hey");
-        System.out.println(WordCounter.getInstance());
     }
 }

@@ -14,39 +14,49 @@ public class Word {
     private String value;
     private String definition;
 
+    /**
+     * Constructor to inialize a Word instance with a value (string word) and set the definition.
+     * @param val A String value representing a word.
+     */
     public Word(String val){
         setValue(val);
         setDefinition();
     }
 
+    /**
+     * Method to retreive the RAE-API-URL for a given word.
+     * @param word A String value representing a word.
+     * @return
+     */
     public String getStringUrl(String word){
         return APIURL + word;
     }
+
 
     public String getValue(){ return value;}
     public void setValue(String word){
         this.value = word;
     }
     public String getDefinition(){ return definition;}
+
+    /**
+     * Method used to retreive the definition of a given word (request to API)
+     */
     public void setDefinition(){
         JsonSerializer jsonSerializer = getFromRAE(value); ;
         String word = getValue();
         this.definition = jsonSerializer.toString();
     }
 
+    /**
+     * Method used to get the response from the RAE API for a given word.
+     * @param val String value representing a word.
+     * @return
+     */
     private JsonSerializer getFromRAE(String val) {
-        // https://stackoverflow.com/questions/7352748/how-to-set-connection-timeouts-in-google-app-engine
-        // https://cloud.google.com/appengine/docs/standard/java/config/appref#urlfetch_timeout
-        // https://cloud.google.com/appengine/docs/standard/java/issue-requests#Fetching_URLs_with_java_net
-        // http://localhost:8080/demo
-        // https://github.com/GoogleCloudPlatform/java-docs-samples/blob/master/appengine/urlfetch/src/main/java/com/example/appengine/UrlFetchServlet.java
         String wordUrl = getStringUrl(val);
         JsonSerializer jsonResp = Requests.getJson(wordUrl);
         return jsonResp;
     }
 
-    static public void main(String[] args) throws IOException {
-        Word word = new Word("hola");
-        System.out.println(word.getDefinition());
-    }
 }

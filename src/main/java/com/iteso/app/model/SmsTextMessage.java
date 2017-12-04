@@ -1,10 +1,18 @@
 package com.iteso.app.model;
 
 import com.iteso.app.util.AppConfigs;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
+//import com.twilio.Twilio;
+//import com.twilio.rest.api.v2010.account.Message;
+//import com.twilio.type.PhoneNumber;
+import com.twilio.sdk.*;
+import com.twilio.sdk.resource.factory.*;
+import com.twilio.sdk.resource.instance.*;
+import com.twilio.sdk.resource.list.*;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("all")
 public class SmsTextMessage {
@@ -35,17 +43,26 @@ public class SmsTextMessage {
      * @return Returns a string representing the message id.
      */
     public String send(){
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                new PhoneNumber(getPhoneNumber()),
-                new PhoneNumber(TNUMBER),
-                getStringContent())
-                .create();
-        return message.getSid();
+        //Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("To", getPhoneNumber()));
+        params.add(new BasicNameValuePair("From", TNUMBER));
+        params.add(new BasicNameValuePair("Body", getStringContent()));
+        MessageFactory messageFactory = client.getAccount().getMessageFactory();
+        try{
+            Message message = messageFactory.create(params);
+            return message.getSid();
+        } catch (TwilioRestException e){
+            return "Error";
+        }
+
+        //Message message = Message.creator(
+        //        new PhoneNumber(getPhoneNumber()),
+        //        new PhoneNumber(TNUMBER),
+        //        getStringContent())
+        //        .create();
+        //return message.getSid();
     }
 
-    public static void main(String[] args){
-        SmsTextMessage smsTextMessage = new SmsTextMessage("+523318506323", "Hey there, esto es una prueba.");
-        System.out.println(smsTextMessage.send());
-    }
 }

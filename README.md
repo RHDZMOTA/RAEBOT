@@ -4,6 +4,7 @@
 
 Twilio chatbot that serves as a dictionary for spanish language.
 
+See API documentation: https://app.swaggerhub.com/apis/rhdzmota-apis/RAEBOT/1.0.0
 
 ## Requirements
 

@@ -7,18 +7,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.iteso.app.util.JsonSerializer;
-
 @SuppressWarnings("all")
 public class Requests {
 
     public static int timeoutMs = 45000;
 
-
+    /**
+     * Embedded Request class.
+     */
     private static class Request {
         private String url;
         private JsonSerializer response;
 
+        /**
+         * Request constructor to initialize with a string url.
+         * @param url String value representing a url.
+         */
         public Request(String url){
             setUrl(url);
         }
@@ -39,6 +43,11 @@ public class Requests {
             return response;
         }
 
+        /**
+         * Method that performs a basic get request.
+         * @param timeoutMs Waiting time for the request to finalize (in ms).
+         * @throws IOException
+         */
         public void performGet(int timeoutMs) throws IOException {
             URL url = new URL(getUrl());
             URLConnection conn = url.openConnection();
@@ -56,6 +65,11 @@ public class Requests {
         }
     }
 
+    /**
+     * Method that performs a get requests return a JsonSerializer object.
+     * @param url String value representing an url.
+     * @return JsonSerializer object that contains the response of the get request.
+     */
     public static JsonSerializer getJson(String url){
         Request r = new Request(url);
 
@@ -64,7 +78,7 @@ public class Requests {
             r.performGet(Requests.timeoutMs);
             jsonResp = r.getResponse();
         } catch (IOException e) {
-            jsonResp = new JsonSerializer("{\"error\": " + "\"" + e.getMessage() + "\"");
+            jsonResp = new JsonSerializer("{\"error\": " + "\"" + e.getMessage() + "\"}");
         }
         return jsonResp;
     }
