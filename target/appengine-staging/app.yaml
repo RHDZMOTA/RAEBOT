@@ -37,6 +37,10 @@ handlers:
   script: unused
   login: optional
   secure: optional
+- url: /sms
+  script: unused
+  login: optional
+  secure: optional
 - url: /freq
   script: unused
   login: optional

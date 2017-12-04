@@ -2,7 +2,7 @@
 **Western Institute of Technology and Higher Education**
 
 
-Fb-messenger chatbot that serves as a dictionary for spanish language.
+Twilio chatbot that serves as a dictionary for spanish language.
 
 
 ## Requirements
@@ -53,7 +53,7 @@ The following instructions illustrates the deployment procedure:
     * `mvn appengine:deploy`
     
 See https://chatbot-rae.appspot.com/
-
+See https://raebot.herokuapp.com/
 ## Tech Stack
 
 * [Maven](https://maven.apache.org)

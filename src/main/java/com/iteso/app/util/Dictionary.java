@@ -1,5 +1,7 @@
 package com.iteso.app.util;
 
+import com.iteso.app.model.Word;
+
 import java.util.HashMap;
 
 @SuppressWarnings("all")

@@ -1,5 +1,8 @@
-package com.iteso.app.util;
+package com.iteso.app.model;
 
+
+import com.iteso.app.util.JsonSerializer;
+import com.iteso.app.util.Requests;
 
 import java.io.IOException;
 

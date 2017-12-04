@@ -39,6 +39,22 @@
 
   <dependencies>
     <!-- Compile/runtime dependencies -->
+
+
+    <dependency>
+      <groupId>com.twilio.sdk</groupId>
+      <artifactId>twilio</artifactId>
+      <version>7.16.1</version>
+    </dependency>
+
+    <!--
+    <dependency>
+      <groupId>com.twilio.sdk</groupId>
+      <artifactId>twilio-java-sdk</artifactId>
+      <version>6.3.0</version>
+    </dependency>
+    -->
+
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
