@@ -153,7 +153,7 @@ implements <a href="../../../../com/iteso/app/service/GenericService.html" title
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../com/iteso/app/service/DefinitionService.html#DefinitionService-java.lang.String-java.lang.String-">DefinitionService</a></span>(java.lang.String&nbsp;word,
-                 java.lang.String&nbsp;sendNumber)</code>&nbsp;</td>
+                 java.lang.String&nbsp;senderNumber)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -178,7 +178,7 @@ implements <a href="../../../../com/iteso/app/service/GenericService.html" title
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/iteso/app/service/DefinitionService.html#sendMessage-java.lang.String-">sendMessage</a></span>(java.lang.String&nbsp;sendNumber)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/iteso/app/service/DefinitionService.html#sendMessage-java.lang.String-">sendMessage</a></span>(java.lang.String&nbsp;senderNumber)</code>
 <div class="block">Send message (definition) using twilio API to a given phone number.</div>
 </td>
 </tr>
@@ -240,7 +240,7 @@ implements <a href="../../../../com/iteso/app/service/GenericService.html" title
 <li class="blockList">
 <h4>DefinitionService</h4>
 <pre>public&nbsp;DefinitionService(java.lang.String&nbsp;word,
-                         java.lang.String&nbsp;sendNumber)</pre>
+                         java.lang.String&nbsp;senderNumber)</pre>
 </li>
 </ul>
 </li>
@@ -264,7 +264,7 @@ implements <a href="../../../../com/iteso/app/service/GenericService.html" title
 <dd><code><a href="../../../../com/iteso/app/service/GenericService.html#getStringResp--">getStringResp</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../com/iteso/app/service/GenericService.html" title="interface in com.iteso.app.service">GenericService</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>word</code> - A string value representing a word.</dd>
-<dd><code>sendNumber</code> - A string value representing a number.</dd>
+<dd><code>senderNumber</code> - A string value representing a number.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A string value representing a json with the definition of a word.</dd>
 </dl>
@@ -276,11 +276,11 @@ implements <a href="../../../../com/iteso/app/service/GenericService.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>sendMessage</h4>
-<pre>public&nbsp;void&nbsp;sendMessage(java.lang.String&nbsp;sendNumber)</pre>
+<pre>public&nbsp;void&nbsp;sendMessage(java.lang.String&nbsp;senderNumber)</pre>
 <div class="block">Send message (definition) using twilio API to a given phone number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sendNumber</code> - A string value representing a phone number.</dd>
+<dd><code>senderNumber</code> - A string value representing a phone number.</dd>
 </dl>
 </li>
 </ul>

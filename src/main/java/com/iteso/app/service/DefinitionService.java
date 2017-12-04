@@ -10,11 +10,11 @@ public class DefinitionService implements GenericService {
     protected String definition;
     private final String UNAVAILABLE = "{\"Error\": \"Service unavailable (try later)\"}";
     private String word;
-    private String sendNumber;
+    private String senderNumber;
 
-    public DefinitionService(String word, String sendNumber){
+    public DefinitionService(String word, String senderNumber){
         this.word = word;
-        this.sendNumber = sendNumber;
+        this.senderNumber = senderNumber;
     }
 
     /**
@@ -28,8 +28,8 @@ public class DefinitionService implements GenericService {
         tryAddDict(word);
         tryAddCounter(word);
         this.definition = Dictionary.has(word) ? Dictionary.getDefinition(word) : UNAVAILABLE;
-        if  (sendNumber != null)
-            sendMessage(sendNumber);
+        if  (senderNumber != null)
+            sendMessage(senderNumber);
         return definition;
     }
 
